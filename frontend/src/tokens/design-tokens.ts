@@ -1,0 +1,36 @@
+export const tokens = {
+  color: {
+    brand: '#4F46E5',
+    brandHover: '#4338CA',
+    accent: '#06B6D4',
+    bg: '#F8FAFC',
+    surface: '#FFFFFF',
+    text: '#0F172A',
+    textMuted: '#64748B',
+    border: '#E2E8F0',
+    success: '#16A34A',
+    warning: '#D97706',
+    danger: '#DC2626',
+    focus: '#6366F1',
+  },
+  dark: {
+    bg: '#020617',
+    surface: '#0F172A',
+    text: '#E2E8F0',
+    textMuted: '#94A3B8',
+    border: '#1E293B',
+  },
+  font: {
+    family: "'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    size: { xs: '0.75rem', sm: '0.875rem', md: '1rem', lg: '1.125rem', xl: '1.5rem', xxl: '2rem' },
+    weight: { regular: 400, medium: 500, semibold: 600, bold: 700 },
+  },
+  spacing: { xs: '0.25rem', sm: '0.5rem', md: '0.75rem', lg: '1rem', xl: '1.5rem', xxl: '2rem' },
+  radius: { sm: '0.5rem', md: '0.75rem', lg: '1rem', pill: '999px' },
+  shadow: {
+    sm: '0 1px 2px rgba(15, 23, 42, 0.06)',
+    md: '0 8px 16px rgba(15, 23, 42, 0.08)',
+    lg: '0 20px 45px rgba(15, 23, 42, 0.12)',
+  },
+  grid: { max: '1200px', gutter: '24px' },
+};

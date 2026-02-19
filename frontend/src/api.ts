@@ -1,8 +1,9 @@
-const API_BASE = (import.meta as any).env?.VITE_API_BASE || 'http://localhost:3000/api';
+export const API_BASE = (import.meta as any).env?.VITE_API_BASE || 'http://localhost:3000/api';
 
 export type Role = 'CANDIDATE' | 'RECRUITER' | 'ADMIN';
+export type User = { id: string; email: string; role: Role };
 
-export async function api(path: string, method = 'GET', body?: unknown) {
+export async function api<T>(path: string, method = 'GET', body?: unknown): Promise<T> {
   const token = localStorage.getItem('token');
   const res = await fetch(`${API_BASE}${path}`, {
     method,
@@ -16,10 +17,7 @@ export async function api(path: string, method = 'GET', body?: unknown) {
   return res.json();
 }
 
-export async function register(email: string, password: string, role: Role) {
-  return api('/auth/register', 'POST', { email, password, role });
-}
-
-export async function login(email: string, password: string) {
-  return api('/auth/login', 'POST', { email, password });
-}
+export const authApi = {
+  register: (email: string, password: string, role: Role) => api<{ token: string; user: User }>('/auth/register', 'POST', { email, password, role }),
+  login: (email: string, password: string) => api<{ token: string; user: User }>('/auth/login', 'POST', { email, password }),
+};
