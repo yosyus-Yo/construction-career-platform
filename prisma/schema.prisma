@@ -17,6 +17,7 @@ model User {
   profile      CandidateProfile?
   jobPosts     JobPost[]
   applications Application[]
+  offers       Offer[]
   audits       AuditLog[] @relation("ActorAudits")
 }
 
@@ -59,13 +60,24 @@ model Application {
   candidate      User              @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   jobPostId      String
   jobPost        JobPost           @relation(fields: [jobPostId], references: [id], onDelete: Cascade)
-  status         String @default("SUBMITTED")
+  status         String            @default("SUBMITTED")
   fitScore       Float
   note           String?
+  offers         Offer[]
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
 
   @@unique([candidateId, jobPostId])
+}
+
+model Offer {
+  id            String      @id @default(cuid())
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  recruiterId   String
+  recruiter     User        @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+  message       String
+  createdAt     DateTime    @default(now())
 }
 
 model AuditLog {

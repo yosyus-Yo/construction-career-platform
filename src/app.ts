@@ -7,6 +7,7 @@ import candidateRoutes from './routes/candidate.js';
 import jobRoutes from './routes/job.js';
 import applicationRoutes from './routes/application.js';
 import adminRoutes from './routes/admin.js';
+import recruiterRoutes from './routes/recruiter.js';
 
 export const app = express();
 
@@ -29,3 +30,4 @@ app.use('/api/candidate', candidateRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/recruiter', recruiterRoutes);

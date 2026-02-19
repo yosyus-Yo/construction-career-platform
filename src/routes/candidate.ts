@@ -7,6 +7,13 @@ import { writeAudit } from '../modules/audit/service.js';
 
 const router = Router();
 
+router.get('/profile', requireAuth, requireRole('CANDIDATE'), async (req, res) => {
+  const u = (req as any).user;
+  const profile = await prisma.candidateProfile.findUnique({ where: { userId: u.sub } });
+  if (!profile) return res.status(404).json({ error: 'Profile not found' });
+  res.json(profile);
+});
+
 router.post('/profile', requireAuth, requireRole('CANDIDATE'), async (req, res) => {
   const schema = z.object({
     fullName: z.string().min(2),
